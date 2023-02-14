@@ -10,3 +10,30 @@ services:
       - 8000:8000
     volumes:
       - ./:/app
+
+  app:
+    image: node:18-alpine
+    command: sh -c "yarn install && yarn run dev"
+    ports:
+      - 3000:3000
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ROBrob528%@*
+      MYSQL_DB: tod
+    mysql:
+      image: mysql:8.0
+      volumes:
+        - todo-mysql-data:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: ROBrob528%@*
+        MYSQL_DATABASE: tod
+
+volumes:
+  todo-mysql-data:
+
+
+    
